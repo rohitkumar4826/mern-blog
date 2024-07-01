@@ -62,11 +62,13 @@ export default function CreatePost() {
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('access_token');
     try {
       const res = await fetch('http://localhost:3000/api/post/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
         // credentials: 'include',
@@ -116,7 +118,7 @@ export default function CreatePost() {
             <option value='nextjs'>Next.js</option>
           </Select>
         </div>
-        <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
+        <div className='flex gap-4 items-center justify-between border-4 border-sky-400 border-dotted p-3'>
           <FileInput
             type='file'
             accept='image/*'

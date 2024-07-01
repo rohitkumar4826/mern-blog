@@ -84,10 +84,12 @@ export default function UpdatePost() {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('access_token');
       const res = await fetch(`http://localhost:3000/api/post/updatepost/${formData._id}/${currentUser._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
@@ -135,7 +137,7 @@ export default function UpdatePost() {
             <option value='nextjs'>Next.js</option>
           </Select>
         </div>
-        <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
+        <div className='flex gap-4 items-center justify-between border-4 border-sky-400 border-dotted p-3'>
           <FileInput
             type='file'
             accept='image/*'

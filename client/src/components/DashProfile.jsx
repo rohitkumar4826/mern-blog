@@ -111,10 +111,12 @@ export default function DashProfile() {
     }
     try {
       dispatch(updateStart());
+      const token = localStorage.getItem('access_token');
       const res = await fetch(`http://localhost:3000/api/user/update/${currentUser._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
@@ -134,9 +136,14 @@ export default function DashProfile() {
   const handleDeleteUser = async () => {
     setShowModal(false);
     try {
+      const token = localStorage.getItem('access_token');
       dispatch(deleteUserStart());
       const res = await fetch(`http://localhost:3000/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
       });
       const data = await res.json();
       if (!res.ok) {

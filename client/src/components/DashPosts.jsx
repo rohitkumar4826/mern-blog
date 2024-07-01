@@ -51,10 +51,15 @@ export default function DashPosts() {
   const handleDeletePost = async () => {
     setShowModal(false);
     try {
+      const token= localStorage.getItem('access-token');
       const res = await fetch(
         `http://localhost:3000/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {
           method: 'DELETE',
+          header: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
         }
       );
       const data = await res.json();
@@ -135,7 +140,7 @@ export default function DashPosts() {
           {showMore && (
             <button
               onClick={handleShowMore}
-              className='w-full text-teal-500 self-center text-sm py-7'
+              className='w-full text-sky-400 self-center text-sm py-7'
             >
               Show more
             </button>

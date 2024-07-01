@@ -35,6 +35,7 @@ export default function SignIn() {
       }
 
       if (res.ok) {
+        localStorage.setItem('access_token', data.token);
         dispatch(signInSuccess(data));
         navigate('/');
       }
@@ -98,7 +99,7 @@ export default function SignIn() {
           </form>
           <div className='flex gap-2 text-sm mt-5'>
             <span>Dont Have an account?</span>
-            <Link to='/sign-up' className='text-blue-500'>
+            <Link to='/sign-up' className='text-sky-400'>
               Sign Up
             </Link>
           </div>

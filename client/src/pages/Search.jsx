@@ -118,7 +118,7 @@ export default function Search() {
               {posts.length === 0 && <p className='text-xl text-gray-500'>No posts found.</p>}
               {posts.map((post) => <PostCard key={post._id} post={post} />)}
               {showMore && (
-                <button onClick={handleShowMore} className='text-teal-500 text-lg hover:underline p-7 w-full'>
+                <button onClick={handleShowMore} className='text-sky-400 text-lg hover:underline p-7 w-full'>
                   Show More
                 </button>
               )}

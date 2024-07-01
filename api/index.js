@@ -45,6 +45,7 @@ app.use('/api/comment', commentRoutes);
 //   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 // });
 
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

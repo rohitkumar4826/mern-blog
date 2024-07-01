@@ -31,10 +31,12 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
 
   const handleSave = async () => {
     try {
+      const token = localStorage.getItem('access-token');
       const res = await fetch(`http://localhost:3000/api/comment/editComment/${comment._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           content: editedContent,
@@ -100,10 +102,10 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
               <button
                 type='button'
                 onClick={() => onLike(comment._id)}
-                className={`text-gray-400 hover:text-blue-500 ${
+                className={`text-gray-400 hover:text-sky-500 ${
                   currentUser &&
                   comment.likes.includes(currentUser._id) &&
-                  '!text-blue-500'
+                  '!text-sky-500'
                 }`}
               >
                 <FaThumbsUp className='text-sm' />
@@ -120,7 +122,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
                     <button
                       type='button'
                       onClick={handleEdit}
-                      className='text-gray-400 hover:text-blue-500'
+                      className='text-gray-400 hover:text-sky-500'
                     >
                       Edit
                     </button>

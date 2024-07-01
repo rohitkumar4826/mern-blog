@@ -125,13 +125,13 @@ export default function CommentSection({ postId }) {
       ) : (
         <div className='text-sm text-teal-500 my-5 flex gap-1'>
           You must be signed in to comment.
-          <Link className='text-blue-500 hover:underline' to={'/sign-in'}>
+          <Link className='text-sky-500 hover:underline' to={'/sign-in'}>
             Sign In
           </Link>
         </div>
       )}
       {currentUser && (
-        <form onSubmit={handleSubmit} className='border border-teal-500 rounded-md p-3'>
+        <form onSubmit={handleSubmit} className='border border-sky-400 rounded-md p-3'>
           <Textarea
             placeholder='Add a comment...'
             rows='3'

@@ -34,12 +34,12 @@ export default function Home() {
         </p>
         <Link
           to='/search'
-          className='text-xs sm:text-sm text-teal-500 font-bold hover:underline'
+          className='text-xs sm:text-sm text-sky-400 font-bold hover:underline'
         >
           View all posts
         </Link>
       </div>
-      <div className='p-3 bg-amber-100 dark:bg-slate-700'>
+      <div className='p-3 shadow-lg hover:shadow-xl bg-[rgb(16,23,42)] backdrop-blur-lg dark:bg-slate-700'>
         <CallToAction />
       </div>
 
@@ -54,7 +54,7 @@ export default function Home() {
             </div>
             <Link
               to='/search'
-              className='text-lg text-teal-500 hover:underline text-center'
+              className='text-lg text-sky-400 hover:underline text-center'
             >
               View all posts
             </Link>
