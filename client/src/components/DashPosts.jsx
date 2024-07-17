@@ -49,9 +49,9 @@ export default function DashPosts() {
   };
 
   const handleDeletePost = async () => {
+    const token= localStorage.getItem('access_token');
     setShowModal(false);
     try {
-      const token= localStorage.getItem('access-token');
       const res = await fetch(
         `http://localhost:3000/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {

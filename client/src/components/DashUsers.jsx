@@ -13,11 +13,15 @@ export default function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const token= localStorage.getItem('access-token');
+        const token= localStorage.getItem('access_token');
         const res = await fetch(`http://localhost:3000/api/user/getusers`,{
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        });
+          method: 'GET',
+          headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          }
+        }
+      );
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -37,10 +41,14 @@ export default function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const token= localStorage.getItem('access-token');
-      const res = await fetch(`http://localhost:3000/api/user/getusers?startIndex=${startIndex}`,{
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+      const token= localStorage.getItem('access_token');
+      const res = await fetch(`http://localhost:3000/api/user/getusers?startIndex=${startIndex}`,
+      {
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        }
       });
       const data = await res.json();
       if (res.ok) {
@@ -56,7 +64,7 @@ export default function DashUsers() {
 
   const handleDeleteUser = async () => {
     try {
-       const token = localStorage.getItem('access-token');
+       const token = localStorage.getItem('access_token');
         const res = await fetch(`http://localhost:3000/api/user/delete/${userIdToDelete}`, {
             method: 'DELETE',
             header: {

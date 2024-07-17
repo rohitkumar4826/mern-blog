@@ -7,7 +7,7 @@ import OAuth from '../components/OAuth';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const { loading, error: errorMessage } = useSelector((state) => state.user);
+  const { loading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -112,11 +112,6 @@ export default function SignIn() {
               Sign Up
             </Link>
           </div>
-          {errorMessage && (
-            <div className="mt-5 text-sm text-red-600 bg-red-100 rounded-md p-4 dark:text-red-600" role="alert">
-              {errorMessage}
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { errorHandler } from './error.js';
 
 export const verifyToken = (req, res, next) => {
   // Extract the token from the Authorization header
+  console.log(req.headers);
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(' ')[1];
 

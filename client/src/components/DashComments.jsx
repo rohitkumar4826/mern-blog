@@ -12,8 +12,15 @@ export default function DashComments() {
   const [commentIdToDelete, setCommentIdToDelete] = useState('');
   useEffect(() => {
     const fetchComments = async () => {
+      const token= localStorage.getItem('access_token');
       try {
-        const res = await fetch(`http://localhost:3000/api/comment/getcomments`);
+        const res = await fetch(`http://localhost:3000/api/comment/getcomments`,{
+          method:'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token}`,
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
@@ -31,11 +38,17 @@ export default function DashComments() {
   }, [currentUser._id]);
 
   const handleShowMore = async () => {
+    const token=localStorage.getItem('access_token');
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `http://localhost:3000/api/comment/getcomments?startIndex=${startIndex}`
-      );
+        `http://localhost:3000/api/comment/getcomments?startIndex=${startIndex}`,{
+          method:'GET',
+          headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
       const data = await res.json();
       if (res.ok) {
         setComments((prev) => [...prev, ...data.comments]);
@@ -49,12 +62,17 @@ export default function DashComments() {
   };
 
   const handleDeleteComment = async () => {
+    const token= localStorage.getItem('access_token');
+    console.log(commentIdToDelete);
     setShowModal(false);
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/comment/deleteComment/${commentIdToDelete}`,
+      const res = await fetch(`http://localhost:3000/api/comment/deleteComment/${commentIdToDelete}`,
         {
           method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
         }
       );
       const data = await res.json();

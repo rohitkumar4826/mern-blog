@@ -31,7 +31,9 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
 
   const handleSave = async () => {
     try {
-      const token = localStorage.getItem('access-token');
+      const token = localStorage.getItem('access_token');
+      console.log(token);
+      console.log("Here is comment ID", comment._id);
       const res = await fetch(`http://localhost:3000/api/comment/editComment/${comment._id}`, {
         method: 'PUT',
         headers: {
@@ -44,7 +46,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
       });
       if (res.ok) {
         setIsEditing(false);
-        onEdit(comment, editedContent);
+        onEdit(comment._id, editedContent);
       }
     } catch (error) {
       console.log(error.message);

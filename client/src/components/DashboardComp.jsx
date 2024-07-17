@@ -23,7 +23,13 @@ export default function DashboardComp() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/user/getusers?limit=5');
+        const res = await fetch('http://localhost:3000/api/user/getusers?limit=5',{
+          method:'GET',
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':`Bearer ${localStorage.getItem('access_token')}`
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -48,8 +54,15 @@ export default function DashboardComp() {
       }
     };
     const fetchComments = async () => {
+      const token=localStorage.getItem('access_token');
       try {
-        const res = await fetch('http://localhost:3000/api/comment/getcomments?limit=5');
+        const res = await fetch('http://localhost:3000/api/comment/getcomments?limit=5',{
+          method:'GET',
+          headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
