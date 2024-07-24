@@ -14,7 +14,7 @@ export default function DashComments() {
     const fetchComments = async () => {
       const token= localStorage.getItem('access_token');
       try {
-        const res = await fetch(`http://localhost:3000/api/comment/getcomments`,{
+        const res = await fetch(`/api/comment/getcomments`,{
           method:'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export default function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `http://localhost:3000/api/comment/getcomments?startIndex=${startIndex}`,{
+        `/api/comment/getcomments?startIndex=${startIndex}`,{
           method:'GET',
           headers:{
             'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export default function DashComments() {
     console.log(commentIdToDelete);
     setShowModal(false);
     try {
-      const res = await fetch(`http://localhost:3000/api/comment/deleteComment/${commentIdToDelete}`,
+      const res = await fetch(`/api/comment/deleteComment/${commentIdToDelete}`,
         {
           method: 'DELETE',
           headers: {

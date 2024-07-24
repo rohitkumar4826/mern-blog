@@ -15,7 +15,7 @@ export default function PostPage() {
   const fetchPost = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:3000/api/post/getposts?slug=${postSlug}`);
+      const res = await fetch(`/api/post/getposts?slug=${postSlug}`);
       if (!res.ok) {
         setError(true);
         setLoading(false);
@@ -33,7 +33,7 @@ export default function PostPage() {
 
   const fetchRecentPosts = useCallback(async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/post/getposts?limit=3`);
+      const res = await fetch(`/api/post/getposts?limit=3`);
       if (res.ok) {
         const data = await res.json();
         setRecentPosts(data.posts);

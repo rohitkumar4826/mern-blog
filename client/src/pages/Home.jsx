@@ -8,7 +8,7 @@ export default function Home() {
 
   const fetchPosts = useCallback(async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/post/getPosts');
+      const res = await fetch('/api/post/getPosts');
       if (res.ok) {
         const data = await res.json();
         setPosts(data.posts);

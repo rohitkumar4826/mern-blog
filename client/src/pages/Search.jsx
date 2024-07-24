@@ -19,7 +19,7 @@ export default function Search() {
   const fetchPosts = useCallback(async () => {
     setLoading(true);
     const urlParams = new URLSearchParams(location.search);
-    const res = await fetch(`http://localhost:3000/api/post/getposts?${urlParams}`);
+    const res = await fetch(`/api/post/getposts?${urlParams}`);
     if (res.ok) {
       const data = await res.json();
       setPosts(data.posts);
@@ -57,7 +57,7 @@ export default function Search() {
     const startIndex = posts.length;
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('startIndex', startIndex);
-    const res = await fetch(`http://localhost:3000/api/post/getposts?${urlParams}`);
+    const res = await fetch(`/api/post/getposts?${urlParams}`);
     if (res.ok) {
       const data = await res.json();
       setPosts((prevPosts) => [...prevPosts, ...data.posts]);

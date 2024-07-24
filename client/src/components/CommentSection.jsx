@@ -18,7 +18,7 @@ export default function CommentSection({ postId }) {
     const getComments = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/comment/getPostComments/${postId}`
+          `/api/comment/getPostComments/${postId}`
         );
         if (res.ok) {
           const data = await res.json();
@@ -39,11 +39,11 @@ export default function CommentSection({ postId }) {
       return;
     }
     try {
-      const res = await fetch("http://localhost:3000/api/comment/create", {
+      const res = await fetch("/api/comment/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
           content: comment,
@@ -70,12 +70,12 @@ export default function CommentSection({ postId }) {
     }
     try {
       const res = await fetch(
-        `http://localhost:3000/api/comment/likeComment/${commentId}`,
+        `/api/comment/likeComment/${commentId}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
           },
         }
       );
@@ -117,12 +117,12 @@ export default function CommentSection({ postId }) {
     }
     try {
       const res = await fetch(
-        `http://localhost:3000/api/comment/deleteComment/${commentToDelete}`,
+        `/api/comment/deleteComment/${commentToDelete}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
           },
         }
       );

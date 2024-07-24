@@ -14,7 +14,7 @@ export default function DashUsers() {
     const fetchUsers = async () => {
       try {
         const token= localStorage.getItem('access_token');
-        const res = await fetch(`http://localhost:3000/api/user/getusers`,{
+        const res = await fetch(`/api/user/getusers`,{
           method: 'GET',
           headers:{
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export default function DashUsers() {
     const startIndex = users.length;
     try {
       const token= localStorage.getItem('access_token');
-      const res = await fetch(`http://localhost:3000/api/user/getusers?startIndex=${startIndex}`,
+      const res = await fetch(`/api/user/getusers?startIndex=${startIndex}`,
       {
         method: 'GET',
         headers:{
@@ -65,7 +65,7 @@ export default function DashUsers() {
   const handleDeleteUser = async () => {
     try {
        const token = localStorage.getItem('access_token');
-        const res = await fetch(`http://localhost:3000/api/user/delete/${userIdToDelete}`, {
+        const res = await fetch(`/api/user/delete/${userIdToDelete}`, {
             method: 'DELETE',
             header: {
                 'Content-Type': 'application/json',

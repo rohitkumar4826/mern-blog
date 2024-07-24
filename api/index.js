@@ -6,10 +6,14 @@ import authRoutes from './routes/auth.route.js';
 import postRoutes from './routes/post.route.js';
 import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
-// import path from 'path';
+import path from 'path'
+import { fileURLToPath } from 'url';
 import cors from 'cors'; // Import cors
-
+const port = process.env.PORT || 3000;
 dotenv.config();
+// Define __filename and __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 mongoose
   .connect(process.env.MONGO)
@@ -23,14 +27,11 @@ mongoose
 // const __dirname = path.resolve();
 
 const app = express();
-// app.use(cors({
-//   origin: 'http://localhost:5173',
-//   credentials: true
-// }));
+
 app.use(cors()); // Enable CORS
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(express.static(__dirname+'/dist'));
 // Routes
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
@@ -47,16 +48,21 @@ app.use('/api/comment', commentRoutes);
 
 
 // Error handling middleware
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-  const message = err.message || 'Internal Server Error';
-  res.status(statusCode).json({
-    success: false,
-    statusCode,
-    message,
-  });
-});
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000!');
+app.use('*',(req,res)=>
+{
+  return res.sendFile(__dirname + '/dist/index.html');
+})
+// app.use((err, req, res, next) => {
+//   const statusCode = err.statusCode || 500;
+//   const message = err.message || 'Internal Server Error';
+  // res.status(statusCode).json({
+  //   success: false,
+  //   statusCode,
+  //   message,
+  // });
+// });
+
+app.listen(port, () => {
+  console.log('Server is running on port '+port+'!');
 });
