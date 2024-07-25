@@ -64,7 +64,7 @@ export default function CreatePost() {
     e.preventDefault();
     const token = localStorage.getItem('access_token');
     try {
-      const res = await fetch('/api/post/create', {
+      const res = await fetch('http://localhost:3000/api/post/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

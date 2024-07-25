@@ -27,7 +27,7 @@ export default function UpdatePost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`/api/post/getposts?postId=${postId}`);
+        const res = await fetch(`http://localhost:3000/api/post/getposts?postId=${postId}`);
         const data = await res.json();
         if (!res.ok) {
           console.error(data.message);
@@ -85,7 +85,7 @@ export default function UpdatePost() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('access_token');
-      const res = await fetch(`/api/post/updatepost/${formData._id}/${currentUser._id}`, {
+      const res = await fetch(`http://localhost:3000/api/post/updatepost/${formData._id}/${currentUser._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
